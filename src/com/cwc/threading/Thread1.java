@@ -7,6 +7,8 @@ import java.util.concurrent.RunnableFuture;
 
 public class Thread1 extends Thread {
 
+
+
     PreparedStatement preparedStatement;
     int batchSize = 20;
     String filePath = "F:\\MultiThreading\\src\\com\\cwc\\threading\\vendor.csv";
@@ -35,6 +37,7 @@ public class Thread1 extends Thread {
             //select data from database
             boolean flag = false;
             ResultSet rs = preparedStatement.executeQuery();
+
             System.out.println("......Information From Database...........");
             while (rs.next()){
                 flag = true;
@@ -56,7 +59,7 @@ public class Thread1 extends Thread {
     }
 
     private void insertInformation(Connection connection) {
-        //Now Insert Data
+       //Get data from file and insert into database
         try {
             String lineText = null;
             int count = 0;
@@ -84,6 +87,7 @@ public class Thread1 extends Thread {
                 }
 
             }
+
             lineReader.close();
             // execute the remaining queries
             preparedStatement.executeBatch();
